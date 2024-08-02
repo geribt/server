@@ -11,6 +11,7 @@ const app = express();
 app.use(cors());
 //necesario para poder recibir datos en json
 app.use(express.json());
+//app.use(urlencoded({ extended: false }));
 
 app.use("/api/login", loginRouter);
 app.use("/api/register", registerRouter);

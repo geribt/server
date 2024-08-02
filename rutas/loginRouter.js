@@ -15,7 +15,7 @@ const router = express.Router();
 const durada = 60 * 60 * 1000;
 const secretKey = "setze-jutges";
 
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
     const response = {};
     const { email, password } = req.body;
     if (!email || !password) {

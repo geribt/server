@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "nombre": "Juan",
-    "email": "tuyo@gmail.com",
+    "email": "tuyo2@gmail.com",
     "password": "123456",
     "fecha_registro": "",
     "codigo_pass":"",
