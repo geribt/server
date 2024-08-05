@@ -1,5 +1,6 @@
 import loginRouter from "./rutas/loginRouter.js";
 import registerRouter from "./rutas/registerRouter.js";
+import crearHabitosRouter from "./rutas/CrearHabitosRouter.js";
 import cors from "cors";
 
 //importamos express y controladores
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/login", loginRouter);
 app.use("/api/register", registerRouter);
+app.use("/api/CrearHabitos", crearHabitosRouter);
 
 
 //arranque del servidor
