@@ -26,4 +26,52 @@ router.post('/', async function(req, res, next){
     })
 })
 
+// obtener todos los habitos
+router.get('/', async function(req, res, next){
+    Habito.findAll()
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+// obtener un habito por id
+router.get('/:id', async function(req, res, next){
+    Habito.findByPk(req.params.id)
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+// actualizar un habito
+router.put('/:id', async function(req, res, next){
+    Habito.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+// eliminar un habito
+router.delete('/:id', async function(req, res, next){
+    Habito.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
 export default router;
