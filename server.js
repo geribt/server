@@ -1,6 +1,8 @@
 import loginRouter from "./rutas/loginRouter.js";
 import registerRouter from "./rutas/registerRouter.js";
 import habitosRouter from "./rutas/HabitosRouter.js";
+import estadisticasRouter from "./rutas/estadisticasRouter.js";
+import SeguimientoHabitosRouter from "./rutas/seguimientoHabitosRouter.js";
 import cors from "cors";
 
 //importamos express y controladores
@@ -17,6 +19,7 @@ app.use(express.json());
 app.use("/api/login", loginRouter);
 app.use("/api/register", registerRouter);
 app.use("/api/habitos", habitosRouter);
+app.use("/api/estadisticas", estadisticasRouter);
 
 
 //arranque del servidor
