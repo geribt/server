@@ -21,12 +21,18 @@ content-type: application/json
 
 ###
 
+GET http://localhost:3000/api/habitos HTTP/1.1
+content-type: application/json
+
+###
+
 POST http://localhost:3000/api/habitos HTTP/1.1
 content-type: application/json
 
 {
-    "nombre_habito": "Hacer pesas",
+    "nombre_habito": "Pegar al ajneB ",
     "descripcion": "Hacer pesas para ponerme to jamao",
+    "tipo_habito": "1",
     "frecuencia": "4",
     "fecha_creacion": "2023-06-15",
     "activo": "1",
@@ -35,15 +41,23 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:3000/api/habitos/40 HTTP/1.1
+GET http://localhost:3000/api/habitos/10 HTTP/1.1
+content-type: application/json
+
+###
+PUT http://localhost:3000/api/habitos/10 HTTP/1.1
 content-type: application/json
 
 {
-    "nombre_habito": "Hacer pesas",
-    "descripcion": "Hacer pesas para ponerme to jamao",
-    "frecuencia": "4",
+
+    "nombre_habito": "Funciona PUT",
+    "descripcion": "El PUT funciona",
+    "frecuencia": "3",
+    "activo": "2",
+    "id_usuario":"10",
+    "tipo_habito": "3"
 }
 
 ###
 
-DELETE http://localhost:3000/api/habitos/40 HTTP/1.1
+DELETE http://localhost:3000/api/habitos/11 HTTP/1.1
