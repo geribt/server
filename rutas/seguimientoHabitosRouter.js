@@ -6,6 +6,8 @@ const SeguimientoHabitos = sequelize.define('SeguimientoHabitos', {
     fecha: {type: DataTypes.DATE,},
     id_habito: {
         type: DataTypes.INTEGER,},
+    id_usuario: {
+        type: DataTypes.INTEGER,}
 }, {tableName: 'seguimiento_habitos',timestamps: false,});
 
 export default SeguimientoHabitos;

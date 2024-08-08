@@ -32,12 +32,6 @@ content-type: application/json
     "activo": "1",
     "id_usuario":"10"
 }
-
-###
-
-GET http://localhost:3000/api/estadisticas/countByDate HTTP/1.1
-content-type: application/json
-
 ###
 GET http://localhost:3000/api/habitos/12 HTTP/1.1
 content-type: application/json

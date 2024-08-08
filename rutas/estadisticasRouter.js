@@ -3,7 +3,6 @@ import { DataTypes } from "sequelize";
 import sequelize from "../loadSequelize.js";
 import SeguimientoHabitos from './seguimientoHabitosRouter.js';
 
-
 const Estadisticas = sequelize.define('Habito', {
     nombre_habito: DataTypes.STRING,
     descripcion: DataTypes.STRING,
@@ -14,23 +13,23 @@ const Estadisticas = sequelize.define('Habito', {
     tipo_habito: DataTypes.INTEGER
   }, { tableName: 'habitos', timestamps: false });
 
-  Estadisticas.hasMany(SeguimientoHabitos, { foreignKey: 'id_habito' });
+Estadisticas.hasMany(SeguimientoHabitos, { foreignKey: 'id_habito' });
 SeguimientoHabitos.belongsTo(Estadisticas, { foreignKey: 'id_habito' });
 
-  const router = express.Router();
+const router = express.Router();
 
-  router.get('/countByDate', async (req, res) => {
+router.get('/countByDate/:id', async (req, res) => {
     try {
-      const countByDate = await SeguimientoHabitos.findAll({
-        attributes: ['fecha', [sequelize.fn('COUNT', sequelize.col('fecha')), 'count']],
-        group: ['fecha']
-      });
-      res.json(countByDate);
+        const countByDate = await SeguimientoHabitos.findAll({
+            attributes: ['fecha', [sequelize.fn('COUNT', sequelize.col('fecha')), 'count']],
+            where: { id_usuarioSeguimiento: req.params.id }, // Filtro por id_usuarioSeguimiento
+            group: ['fecha']
+        });
+        res.json(countByDate);
     } catch (error) {
-      console.error('Error fetching count by date:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error fetching count by date:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
-
+});
 
 export default router;
