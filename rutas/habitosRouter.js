@@ -26,4 +26,14 @@ router.post('/', async function(req, res, next){
     })
 })
 
+router.get('/:id_usuario', async function(req, res, next){
+    Habito.findAll({where: {id_usuario: req.params.id_usuario}})
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+
 export default router;
