@@ -16,6 +16,7 @@ const durada = 60 * 60 * 1000;
 const secretKey = "setze-jutges";
 
 router.post('/', (req, res) => {
+    const response = {};
     const { email, password } = req.body;
     if (!email || !password) {
         return res.status(400).json({ ok: false, msg: "Email o password no recibidos" });
@@ -26,11 +27,12 @@ router.post('/', (req, res) => {
             if (usuari && bcrypt.compareSync(password, usuari.password)) {
                 return usuari;
             } else {
-                throw new Error("Usuario o contraseña inválidos");
+                throw "Usuario o contraseña inválidos";
             }
         })
         .then(usuari => {
-            const token = jsonwebtoken.sign(
+            response.ok = true;
+            response.token = jsonwebtoken.sign(
                 {
                     expiredAt: new Date().getTime() + durada,
                     name: usuari.name,
@@ -38,18 +40,10 @@ router.post('/', (req, res) => {
                 },
                 secretKey
             );
-            res.json({ ok: true, token });
+            res.json(response);
         })
-        .catch(err => {
-            console.error(err); // Log the error for debugging purposes
-            let errorMessage = 'Error en el servidor';
-            if (err.message === "Usuario o contraseña inválidos") {
-                errorMessage = err.message;
-            }
-            res.status(400).json({ ok: false, msg: errorMessage });
-        });
+        .catch(err => res.status(400).json({ ok: false, msg: err }));
 });
-
 
 
 export default router;
