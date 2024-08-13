@@ -36,14 +36,14 @@ router.get('/:id_usuario/usuario', async function(req, res, next){
     })
 })
 
-// router.get('/:idHabito', async function(req, res, next){
-//     Habito.findOne({where: {id: req.params.idHabito}})
-//     .then((data) => {
-//         res.json({ok: true, data: data})
-//     })
-//     .catch((error) => {
-//         res.json({ok: false, error: error.message})
-//     })
-// })
+router.get('/:idHabito', async function(req, res, next){
+    Habito.findOne({where: {id: req.params.idHabito}})
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
 
 export default router;

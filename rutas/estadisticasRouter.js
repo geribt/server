@@ -1,7 +1,7 @@
 import express from 'express';
 import { DataTypes } from "sequelize";
 import sequelize from "../loadSequelize.js";
-import SeguimientoHabitos from './seguimientoHabitosRouter.js';
+import SeguimientoHabitos from './seguimientoHabitos.js';
 
 const Estadisticas = sequelize.define('Habito', {
     nombre_habito: DataTypes.STRING,
