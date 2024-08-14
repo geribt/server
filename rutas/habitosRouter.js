@@ -16,7 +16,7 @@ const Habito = sequelize.define('Habito', {
 
 const router = express.Router();
 
-// nuevo habito
+//nuevo habito
 router.post('/', async function(req, res, next){
     Habito.create(req.body)
     .then((data) => {
