@@ -35,6 +35,21 @@ router.get('/:fecha/:id_habito', async function (req, res, next) {
         })
 })
 
+//actualizar progreso de habitos
+router.put('/:fecha/:id_habito', async function (req, res, next) {
+    SeguimientoHabitos.update(req.body, {
+        where: {
+            id_habitos: req.params.id_habito
+        }
+    })
+       .then((data) => {
+            res.json({ ok: true, data: data })
+        })
+       .catch((error) => {
+            res.json({ ok: false, error: error.message })
+        })
+})
+
 
 
 
