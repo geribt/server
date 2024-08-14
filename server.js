@@ -1,7 +1,7 @@
 import loginRouter from "./rutas/loginRouter.js";
 import registerRouter from "./rutas/registerRouter.js";
 import habitosRouter from "./rutas/habitosRouter.js";
-import estadisticasRouter from "./rutas/stadisticasRouter.js";
+import estadisticasRouter from "./rutas/estadisticasRouter.js";
 import SeguimientoHabitosRouter from "./rutas/seguimientoHabitos.js";
 import cors from "cors";
 
