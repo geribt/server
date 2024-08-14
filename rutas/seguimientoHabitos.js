@@ -4,10 +4,12 @@ import sequelize from '../loadSequelize.js';
 
 const SeguimientoHabitos = sequelize.define('SeguimientoHabitos', {
     fecha: {type: DataTypes.DATE,},
-    id_habito: {
+    id_habitos: {
         type: DataTypes.INTEGER,},
-    id_usuario: {
+    id_usuarioSeguimiento: {
+        type: DataTypes.INTEGER,},
+    progreso: {
         type: DataTypes.INTEGER,}
-}, {tableName: 'seguimiento_habitos',timestamps: false,});
+    }, {tableName: 'seguimiento_habitos',timestamps: false,});
 
 export default SeguimientoHabitos;
