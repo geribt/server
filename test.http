@@ -33,17 +33,13 @@ content-type: application/json
     "id_usuario":"10"
 }
 ###
-GET http://localhost:3000/api/habitos/12 HTTP/1.1
+GET http://localhost:3000/api/habitos/19/usuario HTTP/1.1
 content-type: application/json
 
 ###
-
-GET  http://localhost:3000/api/estadisticas/progreso/12/39 HTTP/1.1
-
-###
-
-GET  http://localhost:3000/api/estadisticas/countByDate/12 HTTP/1.1
+GET http://localhost:3000/api/habitos/133 HTTP/1.1
+content-type: application/json
 
 ###
-
-GET http://localhost:3000/api/estadisticas/historial/20 HTTP/1.1
+GET http://localhost:3000/api/seguimientoHabitos/2024-08-13/136 HTTP/1.1
+content-type: application/json
