@@ -35,3 +35,15 @@ content-type: application/json
 ###
 GET http://localhost:3000/api/habitos/12 HTTP/1.1
 content-type: application/json
+
+###
+
+GET  http://localhost:3000/api/estadisticas/progreso/12/39 HTTP/1.1
+
+###
+
+GET  http://localhost:3000/api/estadisticas/countByDate/12 HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/estadisticas/historial/20 HTTP/1.1
