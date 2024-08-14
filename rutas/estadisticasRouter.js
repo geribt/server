@@ -2,6 +2,7 @@ import express from 'express';
 import { DataTypes } from "sequelize";
 import sequelize from "../loadSequelize.js";
 import SeguimientoHabitos from './seguimientoHabitos.js';
+import autentica from './autentica.js';
 
 const Estadisticas = sequelize.define('Habito', {
     nombre_habito: DataTypes.STRING,
@@ -18,11 +19,12 @@ SeguimientoHabitos.belongsTo(Estadisticas, { foreignKey: 'id_habito' });
 
 const router = express.Router();
 
-router.get('/countByDate/:id', async (req, res) => {
+router.get('/countByDate/:id', autentica, async (req, res) => {
+    const usuarioAutenticado = req.userId;
     try {
         const countByDate = await SeguimientoHabitos.findAll({
             attributes: ['fecha', [sequelize.fn('COUNT', sequelize.col('fecha')), 'count']],
-            where: { id_usuarioSeguimiento: req.params.id }, // Filtro por id_usuarioSeguimiento
+            where: { id_usuarioSeguimiento: usuarioAutenticado }, // Filtro por id_usuarioSeguimiento
             group: ['fecha']
         });
         res.json(countByDate);
