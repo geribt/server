@@ -11,7 +11,8 @@ const Habito = sequelize.define('Habito', {
   fecha_creacion: DataTypes.DATE,
   activo: DataTypes.TINYINT,
   id_usuario: DataTypes.INTEGER,
-  tipo_habito: DataTypes.INTEGER
+  tipo_habito: DataTypes.INTEGER,
+  icono_habito: DataTypes.STRING,
 }, { tableName: 'habitos', timestamps: false });
 
 const router = express.Router();
