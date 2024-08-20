@@ -50,4 +50,34 @@ router.get('/:idHabito',autentica, async function(req, res, next){
     })
 })
 
+// actualizar un habito
+router.put('/:id', autentica,async function(req, res, next){
+    Habito.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+
+// eliminar un habito
+router.delete('/:id', autentica,async function(req, res, next){
+    Habito.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+
 export default router;
