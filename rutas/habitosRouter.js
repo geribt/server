@@ -17,7 +17,7 @@ const Habito = sequelize.define('Habito', {
 const router = express.Router();
 
 //nuevo habito
-router.post('/', async function(req, res, next){
+router.post('/',autentica, async function(req, res, next){
     Habito.create(req.body)
     .then((data) => {
         res.json({ok: true, data: data})
