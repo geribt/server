@@ -187,5 +187,4 @@ router.get('/percentage/:id', autentica, async (req, res) => {
     }
 });
 
-
 export default router;
