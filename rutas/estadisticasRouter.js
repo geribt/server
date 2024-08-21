@@ -59,7 +59,7 @@ router.get('/progreso/:id/:id_habit',autentica, async (req, res) => {
 });
 
 
-router.get('/historial/:id', async (req, res) => {
+router.get('/historial/:id',autentica, async (req, res) => {
     try {
         const userId = req.params.id;
 
