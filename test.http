@@ -45,17 +45,18 @@ GET http://localhost:3000/api/habitos/10 HTTP/1.1
 content-type: application/json
 
 ###
-PUT http://localhost:3000/api/habitos/10 HTTP/1.1
+PUT http://localhost:3000/api/habitos/155 HTTP/1.1
 content-type: application/json
 
 {
 
     "nombre_habito": "Funciona PUT",
-    "descripcion": "El PUT funciona",
+    "descripcion": "Correr",
     "frecuencia": "3",
     "activo": "2",
     "id_usuario":"10",
-    "tipo_habito": "3"
+    "tipo_habito": "3",
+    "icono_habito": "bebida2"
 }
 
 ###
