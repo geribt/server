@@ -44,3 +44,6 @@ content-type: application/json
 GET http://localhost:3000/api/seguimientoHabitos/2024-08-13/136 HTTP/1.1
 content-type: application/json
 
+###
+GET http://localhost:3000/api/estadisticas/historial/20 HTTP/1.1
+content-type: application/json
