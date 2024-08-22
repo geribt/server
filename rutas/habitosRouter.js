@@ -28,6 +28,7 @@ router.post('/',autentica, async function(req, res, next){
     })
 })
 
+
 router.get('/:id_usuario/usuario', autentica, async function(req, res, next){
 
     const usuarioAutenticado = req.userId;

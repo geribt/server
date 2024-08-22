@@ -41,57 +41,7 @@ GET http://localhost:3000/api/habitos/133 HTTP/1.1
 content-type: application/json
 
 ###
-GET http://localhost:3000/api/seguimientoHabitos/2024-08-13/136 HTTP/1.1
+GET http://localhost:3000/api/seguimientoHabitos/2024-08-20/137 HTTP/1.1
 content-type: application/json
 
 ###
-GET http://localhost:3000/api/estadisticas/historial/20 HTTP/1.1
-content-type: application/json
-POST http://localhost:3000/api/register HTTP/1.1
-content-type: application/json
-
-{
-    "nombre": "Juan",
-    "email": "tuyo2@gmail.com",
-    "password": "123456",
-    "fecha_registro": "",
-    "codigo_pass":"",
-    "estado": "0",
-    "telefono": "1234567890"
-}
-###
-POST http://localhost:3000/api/login/login HTTP/1.1
-content-type: application/json
-
-{
-    "email": "tuyo@gmail.com",
-    "password": "123456"
-}
-
-###
-
-POST http://localhost:3000/api/habitos HTTP/1.1
-content-type: application/json
-
-{
-    "nombre_habito": "Hacer pesas",
-    "descripcion": "Hacer pesas para ponerme to jamao",
-    "frecuencia": "4",
-    "fecha_creacion": "2023-06-15",
-    "activo": "1",
-    "id_usuario":"10"
-}
-###
-GET http://localhost:3000/api/habitos/19/usuario HTTP/1.1
-content-type: application/json
-
-###
-GET http://localhost:3000/api/habitos/133 HTTP/1.1
-content-type: application/json
-
-###
-GET http://localhost:3000/api/seguimientoHabitos/2024-08-13/136 HTTP/1.1
-content-type: application/json
-
-###
-GET http://localhost:3000/api/estadisticas/historial/20 HTTP/1.1
