@@ -8,11 +8,13 @@ const autentica = (req, res, next) => {
 	if (!token) {
 		res.json({ error: 'no token' });
 	} 
-    token = token.split(' ')[1];
+    //token = token.split(' ')[1];
 
 	jsonwebtoken.verify(token, secretKey, (error, decoded) => {
 		if (error) {
-			res.json({ error: 'token no serveix' });
+			res.json({ error: 'token no serveix',
+				error: error
+			});
 		} else {
 			const { expiredAt } = decoded;
 			if (expiredAt > new Date().getTime()) {

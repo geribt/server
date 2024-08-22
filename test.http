@@ -41,7 +41,7 @@ GET http://localhost:3000/api/habitos/133 HTTP/1.1
 content-type: application/json
 
 ###
-GET http://localhost:3000/api/seguimientoHabitos/2024-08-14/137 HTTP/1.1
+GET http://localhost:3000/api/seguimientoHabitos/2024-08-20/137 HTTP/1.1
 content-type: application/json
 
 ###
@@ -50,5 +50,5 @@ PUT http://localhost:3000/api/seguimientoHabitos/2024-08-14/137 HTTP/1.1
 content-type: application/json
 
 {
-    "progreso": 5
+    "progreso": 2
 }

@@ -1,6 +1,7 @@
 import express from 'express';
 import { DataTypes } from "sequelize";
 import sequelize from "../loadSequelize.js";
+import autentica from './autentica.js';
 
 //Modelo de datos
 const Habito = sequelize.define('Habito', {
@@ -10,7 +11,8 @@ const Habito = sequelize.define('Habito', {
   fecha_creacion: DataTypes.DATE,
   activo: DataTypes.TINYINT,
   id_usuario: DataTypes.INTEGER,
-  tipo_habito: DataTypes.INTEGER
+  tipo_habito: DataTypes.INTEGER,
+  icono_habito: DataTypes.STRING,
 }, { tableName: 'habitos', timestamps: false });
 
 const router = express.Router();
@@ -26,7 +28,7 @@ router.post('/', async function(req, res, next){
     })
 })
 
-router.get('/:id_usuario/usuario', async function(req, res, next){
+router.get('/:id_usuario/usuario',autentica, async function(req, res, next){
     Habito.findAll({where: {id_usuario: req.params.id_usuario}})
     .then((data) => {
         res.json({ok: true, data: data})
@@ -36,7 +38,7 @@ router.get('/:id_usuario/usuario', async function(req, res, next){
     })
 })
 
-router.get('/:idHabito', async function(req, res, next){
+router.get('/:idHabito',autentica, async function(req, res, next){
     Habito.findOne({where: {id: req.params.idHabito}})
     .then((data) => {
         res.json({ok: true, data: data})
