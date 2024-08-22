@@ -187,4 +187,49 @@ router.get('/percentage/:id', autentica, async (req, res) => {
     }
 });
 
+router.get('/historial/habito/:id/:habitId', autentica, async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const habitId = req.params.habitId;
+
+        // Consulta para obtener el historial del hábito específico
+        const historial = await sequelize.query(`
+            SELECT
+                fechas.fecha,
+                CASE 
+                    WHEN SUM(CASE 
+                        WHEN sh.progreso >= h.frecuencia THEN 1 
+                        ELSE 0 
+                    END) > 0 THEN 'Completado'
+                    ELSE 'No Completado'
+                END AS estado_retos
+            FROM (
+                SELECT DISTINCT fecha
+                FROM seguimiento_habitos
+                WHERE id_usuarioSeguimiento = :userId
+            ) AS fechas
+            LEFT JOIN habitos AS h
+                ON h.id_usuario = :userId
+                AND h.id = :habitId
+                AND h.fecha_creacion <= fechas.fecha
+            LEFT JOIN seguimiento_habitos AS sh
+                ON sh.id_habitos = h.id
+                AND sh.fecha = fechas.fecha
+            GROUP BY fechas.fecha
+            ORDER BY fechas.fecha;
+        `, {
+            type: sequelize.QueryTypes.SELECT,
+            replacements: { userId: userId, habitId: habitId }
+        });
+
+        res.json(historial);
+    } catch (error) {
+        console.error('Error fetching historial for habit:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+
+
 export default router;
