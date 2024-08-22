@@ -20,7 +20,9 @@ const SeguimientoHabitos = sequelize.define('SeguimientoHabitos', {
 const router = express.Router();
 
 //buscar seguimiento de habito
-router.get('/:fecha/:id_habito', async function (req, res, next) {
+router.get('/:fecha/:id_habito',autentica, async function (req, res, next) {
+    
+    const usuarioAutenticado = req.userId;
     
     SeguimientoHabitos.findOne({
         where: {

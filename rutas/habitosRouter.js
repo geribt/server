@@ -17,8 +17,8 @@ const Habito = sequelize.define('Habito', {
 
 const router = express.Router();
 
-// nuevo habito
-router.post('/', async function(req, res, next){
+//nuevo habito
+router.post('/',autentica, async function(req, res, next){
     Habito.create(req.body)
     .then((data) => {
         res.json({ok: true, data: data})
@@ -28,8 +28,12 @@ router.post('/', async function(req, res, next){
     })
 })
 
-router.get('/:id_usuario/usuario',autentica, async function(req, res, next){
-    Habito.findAll({where: {id_usuario: req.params.id_usuario}})
+
+router.get('/:id_usuario/usuario', autentica, async function(req, res, next){
+
+    const usuarioAutenticado = req.userId;
+
+    Habito.findAll({where: {id_usuario: usuarioAutenticado}})
     .then((data) => {
         res.json({ok: true, data: data})
     })
@@ -40,6 +44,36 @@ router.get('/:id_usuario/usuario',autentica, async function(req, res, next){
 
 router.get('/:idHabito',autentica, async function(req, res, next){
     Habito.findOne({where: {id: req.params.idHabito}})
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+
+// actualizar un habito
+router.put('/:id', autentica,async function(req, res, next){
+    Habito.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((data) => {
+        res.json({ok: true, data: data})
+    })
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
+})
+
+// eliminar un habito
+router.delete('/:id', autentica,async function(req, res, next){
+    Habito.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
     .then((data) => {
         res.json({ok: true, data: data})
     })
