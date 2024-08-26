@@ -42,7 +42,8 @@ router.get('/:fecha/:id_habito', autentica, async function (req, res, next) {
 router.put('/:fecha/:id_habito', autentica, async function (req, res, next) {
     SeguimientoHabitos.update(req.body, {
         where: {
-            id_habitos: req.params.id_habito
+            id_habitos: req.params.id_habito,
+            fecha: req.params.fecha
         }
     })
         .then((data) => {
@@ -71,7 +72,7 @@ router.get('/:fecha/:id_usuario', autentica, async function (req, res, next) {
             fecha: req.params.fecha,
             id_usuarioSeguimiento: req.params.id_usuario,
             id_habitos: req.params.id_habito
-                  }
+        }
     })
         .then((data) => {
             res.json({ ok: true, data: data })
@@ -79,7 +80,7 @@ router.get('/:fecha/:id_usuario', autentica, async function (req, res, next) {
         .catch((error) => {
             res.json({ ok: false, error: error.message })
         })
-
+})
 router.delete('/:id', async function (req, res, next) {
     SeguimientoHabitos.destroy({
         where: {
