@@ -2,7 +2,7 @@ import express from 'express';
 import { DataTypes } from "sequelize";
 import sequelize from "../loadSequelize.js";
 import autentica from './autentica.js';
-import SeguimientoHabitos from './seguimientoHabitos.js';
+import  SeguimientoHabitos from './seguimientoHabitos.js';
 
 //Modelo de datos
 const Habito = sequelize.define('Habito', {
@@ -83,19 +83,27 @@ router.put('/:id', autentica, async function (req, res, next) {
 })
 
 // eliminar un habito
-router.delete('/:id', autentica, async function (req, res, next) {
-    Habito.destroy({
+router.delete('/:id', autentica, async function(req, res, next){
+    SeguimientoHabitos.destroy({
         where: {
-            id: req.params.id
+            id_habitos: req.params.id
         }
     })
+      .then((data) => {
+        Habito.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
         .then((data) => {
-            res.json({ ok: true, data: data })
+            res.json({ok: true, data: data})
         })
         .catch((error) => {
-            res.json({ ok: false, error: error.message })
+            res.json({ok: false, error: error.message})
         })
-})
+    .catch((error) => {
+        res.json({ok: false, error: error.message})
+    })
 
 // encontrar todos los habitos del tipo 3
 router.get('/:id_usuario/tipo', autentica, async function (req, res, next) {
@@ -106,6 +114,7 @@ router.get('/:id_usuario/tipo', autentica, async function (req, res, next) {
         .catch((error) => {
             res.json({ ok: false, error: error.message })
         })
+
 })
 
 export default router;
