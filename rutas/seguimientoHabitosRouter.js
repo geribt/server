@@ -20,10 +20,10 @@ const SeguimientoHabitos = sequelize.define('SeguimientoHabitos', {
 const router = express.Router();
 
 //buscar seguimiento de habito
-router.get('/:fecha/:id_habito',autentica, async function (req, res, next) {
-    
+router.get('/:fecha/:id_habito', autentica, async function (req, res, next) {
+
     const usuarioAutenticado = req.userId;
-    
+
     SeguimientoHabitos.findOne({
         where: {
             fecha: req.params.fecha,
@@ -45,16 +45,16 @@ router.put('/:fecha/:id_habito', autentica, async function (req, res, next) {
             id_habitos: req.params.id_habito
         }
     })
-       .then((data) => {
+        .then((data) => {
             res.json({ ok: true, data: data })
         })
-       .catch((error) => {
+        .catch((error) => {
             res.json({ ok: false, error: error.message })
         })
 })
 
 //crear seguimiento de habito
-router.post('/',autentica,  async function (req, res, next) {
+router.post('/', async function (req, res, next) {
     SeguimientoHabitos.create(req.body)
         .then((data) => {
             res.json({ ok: true, data: data })
@@ -63,6 +63,22 @@ router.post('/',autentica,  async function (req, res, next) {
             res.json({ ok: false, error: error.message })
         })
 })
+
+// buscar seguimiento de habito de cumplimiento de un usario en un dia especifico
+router.get('/:fecha/:id_usuario', autentica, async function (req, res, next) {
+    SeguimientoHabitos.findAll({
+        where: {
+            fecha: req.params.fecha,
+            id_usuarioSeguimiento: req.params.id_usuario,
+            id_habitos: req.params.id_habito
+                  }
+    })
+        .then((data) => {
+            res.json({ ok: true, data: data })
+        })
+        .catch((error) => {
+            res.json({ ok: false, error: error.message })
+        })
 
 router.delete('/:id', async function (req, res, next) {
     SeguimientoHabitos.destroy({
