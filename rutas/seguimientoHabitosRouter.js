@@ -64,7 +64,19 @@ router.post('/',autentica,  async function (req, res, next) {
         })
 })
 
-
+router.delete('/:id', async function (req, res, next) {
+    SeguimientoHabitos.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then((data) => {
+            res.json({ ok: true, data: data })
+        })
+        .catch((error) => {
+            res.json({ ok: false, error: error.message })
+        })
+})
 
 
 export default router;
