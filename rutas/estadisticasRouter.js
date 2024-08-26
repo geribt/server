@@ -207,6 +207,7 @@ router.get('/historial/habito/:id/:habitId', autentica, async (req, res) => {
                 SELECT DISTINCT fecha
                 FROM seguimiento_habitos
                 WHERE id_usuarioSeguimiento = :userId
+                AND id_habitos = :habitId
             ) AS fechas
             LEFT JOIN habitos AS h
                 ON h.id_usuario = :userId
