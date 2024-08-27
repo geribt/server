@@ -55,7 +55,7 @@ router.put('/:fecha/:id_habito', autentica, async function (req, res, next) {
 })
 
 //crear seguimiento de habito
-router.post('/', async function (req, res, next) {
+router.post('/', autentica,async function (req, res, next) {
     SeguimientoHabitos.create(req.body)
         .then((data) => {
             res.json({ ok: true, data: data })
