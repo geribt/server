@@ -19,7 +19,7 @@ const Habito = sequelize.define('Habito', {
 const router = express.Router();
 
 // nuevo habito
-router.post('/', async function (req, res, next) {
+router.post('/',autentica, async function (req, res, next) {
     try {
         console.log("Creando nuevo habito...");
         const nuevoHabito = await Habito.create(req.body);

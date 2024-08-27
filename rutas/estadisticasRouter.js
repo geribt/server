@@ -123,7 +123,7 @@ router.get('/totalCompleted/:id',autentica, async (req, res) => {
     }
 });
 
-router.get('/daysAllCompleted/:id', async (req, res) => {
+router.get('/daysAllCompleted/:id',autentica, async (req, res) => {
     try {
         const daysAllCompleted = await sequelize.query(`
             SELECT COUNT(fechas.fecha) AS dias_completados
